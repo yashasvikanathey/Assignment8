@@ -1,0 +1,32 @@
+class MyExcep extends Exception {
+    public MyExcep(String message) {
+        super(message);
+    }
+}
+
+
+public class FactorialCalculator {
+    public static void main(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            try {
+                int n = Integer.parseInt(args[i]);
+                if (n < 0 || n > 10) {
+                    throw new MyExcep("Number out of range");
+                }
+                long result = factorial(n);
+                System.out.println(n + "! = " + result);
+            } catch (NumberFormatException e) {
+                System.out.println(args[i] + " is not a valid integer");
+            } catch (MyExcep e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static long factorial(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        return n * factorial(n-1);
+    }
+}
