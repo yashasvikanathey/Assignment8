@@ -1,0 +1,26 @@
+class NOMATCHEXCP extends Exception {
+    public NOMATCHEXCP(int lineNumber, String input) {
+        super("Error: String input at line " + lineNumber + " is not equal to 'India': " + input);
+    }
+}
+
+class Demo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int lineNumber = 0;
+
+        try {
+            System.out.print("Enter the string: ");
+            String input = sc.nextLine();
+            lineNumber++;
+
+            if (!input.equals("India")) {
+                throw new NOMATCHEXCP(lineNumber, input);
+            }
+
+            System.out.println("The string entered is equal to 'India'.");
+        } catch (NOMATCHEXCP e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
